@@ -25,9 +25,9 @@ public class Body {
 		else
 			return false;
 	}
-	public static void main(String []args) {
-		Body b = new Body("m", (float)8, (float) 2);
-		System.out.println(b.toString());
-		System.out.println(b.calculatePosition(3));
-	}
+//	public static void main(String []args) {
+//		Body b = new Body("m", (float)8, (float) 2);
+//		System.out.println(b.toString());
+//		System.out.println(b.calculatePosition(3));
+//	}
 }

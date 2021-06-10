@@ -25,7 +25,8 @@ public String toString() {
 	for(Map.Entry<Double,Body> body:table.entrySet()) {
 		str+=table.get(body.getKey()).name+", ";
 	}
-	return str;
+	
+	return str.substring(0, str.length()-2);
 }
 public Bodies() {
 	this.table = new TreeMap<Double,Body>() ;
@@ -38,15 +39,16 @@ public Bodies  countBodies(double day) {
 		b.position = b.calculatePosition(day);
 		res.add(b);
 	}
+	
 	return res;
 }
-public static void main(String [] args) {
-	Bodies bodies = new Bodies();
-	bodies.add(new Body("Mars",0,0));
-	bodies.add(new Body("Venus",4,1));
-	bodies.add(new Body("Sun",24,2));
-	Bodies boo = bodies.countBodies(75);
-	//bodies.countBodies(3);
-	System.out.print(boo.toString());
-}
+//public static void main(String [] args) {
+//	Bodies bodies = new Bodies();
+//	bodies.add(new Body("Mars",0,0));
+//	bodies.add(new Body("Venus",4,1));
+//	bodies.add(new Body("Sun",24,2));
+//	//Bodies boo = bodies.countBodies(75);
+//	//bodies.countBodies(3);
+//	System.out.print(bodies.countBodies(75).toString());
+//}
 }
