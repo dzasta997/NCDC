@@ -12,31 +12,45 @@ public class Bodies {
 //LinkedList <Body> table;
 SortedMap <Double,Body> table;	
 Body center;
-public void add(Body body) {
+public boolean add(Body body) {
+	if(body ==null) {
+		return false;
+	}
 	if((int)body.radius==0 && center == null) {
 		center = body;
 	}
-	if(!table.containsKey(body.position)) {
-		table.put(body.position, body);
+	if(!table.containsKey(body.positionX)) {
+		table.put(body.positionX, body);
 	}
+	if(table.containsKey(body.positionX) && table.get(body.positionX).positionY< body.positionY) {
+		table.remove(body.positionX);
+		table.put(body.positionX, body);
+	}
+	return true;
 }
 public String toString() {
 	String str = "";
 	for(Map.Entry<Double,Body> body:table.entrySet()) {
 		str+=table.get(body.getKey()).name+", ";
 	}
-	
+	if(str.length()>2)
 	return str.substring(0, str.length()-2);
+	else return "";
 }
 public Bodies() {
 	this.table = new TreeMap<Double,Body>() ;
 }
 public Bodies  countBodies(double day) {
+	if(this.table==null) {
+		return null;
+	}
 	Bodies res = new Bodies();
 	res.add(this.center);
+	
 	for(Map.Entry<Double,Body> body:table.entrySet()) {
 		Body b = table.get(body.getKey());
-		b.position = b.calculatePosition(day);
+		b.calculatePosition(day);
+		
 		res.add(b);
 	}
 	
