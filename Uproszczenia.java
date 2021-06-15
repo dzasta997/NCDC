@@ -1,35 +1,42 @@
-package ncdc;
 
+
+
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Uproszczenia {
 	
 String [][]arr;
-int size;
+int size, path=0;
 public Uproszczenia(int s, String direction) {
 
 size=s;
 
 switch (direction) {
-case "e":
+case "E":
 	arr =new String [s+3][s+2];
 	fill();
 	east();
-case "w":
+	break;
+case "W":
 	arr =new String [s+3][s+2];
 	fill();
 	west();
-case "n":
+	break;
+case "N":
 	arr =new String [s+2][s+3];
 	fill();
 	north();
-case "s":
+	break;
+case "S":
 	arr =new String [s+2][s+3];
 	fill();
 	south();
+	break;
 	}
 display();
+System.out.println(path);
 }
 
 public void fill() {
@@ -45,12 +52,14 @@ public void west() {
 	while(counter>=0) {
 		for( k=j; k<=j+counter; k++) {
 			arr[i][k]=" ";
+			path++;
 		}
 		j=j+counter;
 		i++;
 		counter--;
 		for( k=i; k<=i+counter ; k++) {
 			arr[k][j]=" ";
+			path++;
 
 		}
 		i=i+counter;
@@ -58,6 +67,7 @@ public void west() {
 		j--;
 		for( k=j; k>=j-counter; k--) {
 			arr[i][k]=" ";
+			path++;
 
 			
 		}
@@ -67,7 +77,7 @@ public void west() {
 
 		for( k=i; k>=i-counter;k--) {
 			arr[k][j]=" ";
-			display();
+			path++;
 			
 		}
 		i=i-counter;
@@ -82,6 +92,7 @@ public void north() {
 		
 		for( k=i; k<=i+counter ; k++) {
 			arr[k][j]=" ";
+			path++;
 
 		}
 		i=i+counter;
@@ -89,15 +100,16 @@ public void north() {
 		j--;
 		for( k=j; k>=j-counter; k--) {
 			arr[i][k]=" ";
+			path++;
 
 			
 		}
 		j=j-counter;
 		i--;
 		counter--;
-		display();
 		for( k=i; k>=i-counter;k--) {
 			arr[k][j]=" ";
+			path++;
 
 			
 		}
@@ -106,6 +118,7 @@ public void north() {
 		j++;
 		for( k=j; k<=j+counter; k++) {
 			arr[i][k]=" ";
+			path++;
 
 		}
 		j=j+counter;
@@ -121,7 +134,7 @@ public void south() {
 		
 		for( k=i; k>=i-counter;k--) {
 			arr[k][j]=" ";
-
+			path++;
 			
 		}
 		i=i-counter;
@@ -129,7 +142,7 @@ public void south() {
 		j++;
 		for( k=j; k<=j+counter; k++) {
 			arr[i][k]=" ";
-
+			path++;
 		}
 		j=j+counter;
 		i++;
@@ -137,14 +150,14 @@ public void south() {
 
 		for( k=i; k<=i+counter ; k++) {
 			arr[k][j]=" ";
-
+			path++;
 		}
 		i=i+counter;
 		counter--;
 		j--;
 		for( k=j; k>=j-counter; k--) {
 			arr[i][k]=" ";
-
+			path++;
 			
 		}
 		j=j-counter;
@@ -160,7 +173,7 @@ public void south() {
 		
 			for( k=j; k>=j-counter; k--) {
 				arr[i][k]=" ";
-
+				path++;
 				
 			}
 			j=j-counter;
@@ -169,7 +182,7 @@ public void south() {
 			
 			for( k=i; k>=i-counter;k--) {
 				arr[k][j]=" ";
-
+				path++;
 				
 			}
 			i=i-counter;
@@ -177,7 +190,7 @@ public void south() {
 			j++;
 			for( k=j; k<=j+counter; k++) {
 				arr[i][k]=" ";
-
+				path++;
 			}
 			j=j+counter;
 			i++;
@@ -185,7 +198,7 @@ public void south() {
 
 			for( k=i; k<=i+counter ; k++) {
 				arr[k][j]=" ";
-
+				path++;
 			}
 			i=i+counter;
 			counter--;
@@ -202,13 +215,21 @@ public void display() {
 }
 	System.out.print("\n");
 }
-public static void main(String []args) {
-	Scanner scan  = new Scanner(System.in);
-	String s = scan.next();
-	scan.close();
-	int val = Integer.parseInt(s.substring(0,1));
-	String direction = s.substring(1,2);
-	Uproszczenia up =new Uproszczenia(val,direction);
+public static void main(String []args) throws Exception {
+	
+	
+	try{
+		int val = Integer.parseInt(args[0].substring(0,args[0].length()-1));
+		String direction = args[0].substring(args[0].length()-1);
+		if(!Character.isUpperCase(direction.charAt(0))) {
+			direction = null;
+		}
+		Uproszczenia up =new Uproszczenia(val,direction);
+	}
+	catch(Exception e) {
+		System.out.println("klops");
+	}
 	
 }
 }
+
