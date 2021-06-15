@@ -1,6 +1,7 @@
 
 
 
+
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -223,6 +224,8 @@ public static void main(String []args) throws Exception {
 		String direction = args[0].substring(args[0].length()-1);
 		if(!Character.isUpperCase(direction.charAt(0))) {
 			direction = null;
+		}else if(val>10000) {
+			val =(Integer) null;
 		}
 		Uproszczenia up =new Uproszczenia(val,direction);
 	}
