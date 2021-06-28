@@ -16,7 +16,7 @@ public class DeRevolutionibus {
 		String name;
 		
 		double positionX,positionY, period,radius;
-		public Body(String name, double radius,double period) {
+		public Body(String name, double period,double radius) {
 			
 			this.name = name;
 			this.period =(double) Math.round(100*period)/100;
