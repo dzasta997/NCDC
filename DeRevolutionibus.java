@@ -52,7 +52,7 @@ public class DeRevolutionibus {
 			if(!table.containsKey(body.positionX)) {
 				table.put(body.positionX, body);
 			}
-			if(table.containsKey(body.positionX) && table.get(body.positionX).positionY< body.positionY) {
+			if(table.containsKey(body.positionX) && table.get(body.positionX).positionY>body.positionY) {
 				table.remove(body.positionX);
 				table.put(body.positionX, body);
 			}
@@ -113,7 +113,7 @@ public class DeRevolutionibus {
 			System.out.print("klops");
 		}
 		else {
-			System.out.print(b.toString());
+			System.out.println(b.toString());
 		}
 		 
 	}
